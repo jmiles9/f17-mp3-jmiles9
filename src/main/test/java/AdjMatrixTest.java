@@ -95,4 +95,30 @@ public class AdjMatrixTest {
         assertEquals(neighbours, graph1.getUpstreamNeighbors(v2));
     }
 
+    @Test
+    public void test4(){
+        AdjacencyMatrixGraph graph1 = new AdjacencyMatrixGraph();
+
+        Vertex v1 = new Vertex("A");
+        Vertex v2 = new Vertex("B");
+        Vertex v3 = new Vertex("C");
+        Vertex v4 = new Vertex("D");
+        Vertex v5 = new Vertex("E");
+
+        graph1.addVertex(v1);
+        graph1.addVertex(v2);
+        graph1.addVertex(v3);
+        graph1.addVertex(v4);
+        graph1.addVertex(v5);
+
+        List<Vertex> vertices = new ArrayList<>();
+        vertices.add(v1);
+        vertices.add(v2);
+        vertices.add(v3);
+        vertices.add(v4);
+        vertices.add(v5);
+
+        assertEquals(vertices, graph1.getVertices());
+    }
+
 }

@@ -19,27 +19,6 @@ public class AdjacencyMatrixGraph implements Graph {
         this.adjMatrix = new ArrayList<>();
     }
 
-    public static void main(String [] args){
-        AdjacencyMatrixGraph graph1 = new AdjacencyMatrixGraph();
-
-        Vertex v1 = new Vertex("A");
-        Vertex v2 = new Vertex("B");
-        Vertex v3 = new Vertex("C");
-        Vertex v4 = new Vertex("D");
-        Vertex v5 = new Vertex("E");
-
-        graph1.addVertex(v1);
-        graph1.addVertex(v2);
-        graph1.addVertex(v3);
-        graph1.addVertex(v4);
-        graph1.addVertex(v5);
-
-        graph1.addEdge(v1, v2);
-        graph1.addEdge(v1, v4);
-        graph1.addEdge(v5, v2);
-        graph1.addEdge(v4, v3);
-    }
-
     //////INTERFACE METHODS//////////////////////////////////////////////////////////////////////
     /**
      * Adds a vertex to the graph.
