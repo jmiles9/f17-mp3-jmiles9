@@ -7,9 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class AdjacencyMatrixGraph implements Graph {
-
+//////need to make no trailing elements on the neighbours methods!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     private List<Vertex> vertexList;
-    private List<List<Integer>> adjMatrix;
+    private List<ArrayList<Integer>> adjMatrix;
     private int size; //??
 
 
@@ -84,6 +84,7 @@ public class AdjacencyMatrixGraph implements Graph {
             if(adjMatrix.get(row).get(col) == 1) neighbours.add(vertexList.get(row));
         }
 
+        neighbours.removeAll(Collections.singleton(null));
         return neighbours;
     }
 
@@ -105,6 +106,7 @@ public class AdjacencyMatrixGraph implements Graph {
             if(adjMatrix.get(row).get(col) == 1) neighbours.add(vertexList.get(col));
         }
 
+        neighbours.removeAll(Collections.singleton(null));
         return neighbours;
     }
 

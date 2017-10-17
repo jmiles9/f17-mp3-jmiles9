@@ -4,11 +4,32 @@ import ca.ubc.ece.cpen221.mp3.staff.Vertex;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AdjacencyListGraph implements Graph {
-    public void addVertex(Vertex v){
 
+    private List<LinkedList<Vertex>> adjList;
+    private List<Vertex> vertexList;
+
+    public AdjacencyListGraph(){
+        this.adjList = new ArrayList<LinkedList<Vertex>>();
+        this.vertexList = new ArrayList<>();
+    }
+
+    //////INTERFACE METHODS//////////////////////////////////////////////////////////////////////
+    /**
+     * Adds a vertex to the graph.
+     *
+     * Precondition: v is not already a vertex in the graph
+     */
+
+    public void addVertex(Vertex v){
+        //needs to add a vertex to the list of vertices, and a linkedlist representing the vertex to the adjList.
+        this.vertexList.add(v);
+
+        //adding to adjacency list
+        this.adjList.add(new LinkedList<Vertex>());
 
     }
 
@@ -18,7 +39,9 @@ public class AdjacencyListGraph implements Graph {
      * Precondition: v1 and v2 are vertices in the graph
      */
     public void addEdge(Vertex v1, Vertex v2){
-
+        //needs to add v1 to v2's list.
+        int v2Index = vertexList.indexOf(v2);
+        this.adjList.get(v2Index).add(v1);
     }
 
     /**
@@ -28,6 +51,11 @@ public class AdjacencyListGraph implements Graph {
      * true iff an edge from v1 connects to v2
      */
     public boolean edgeExists(Vertex v1, Vertex v2){
+        //needs to check the list of vertices connected to v2 (the list corresponding to v2 in the adjList)
+        int v2Index = vertexList.indexOf(v2);
+        for(Vertex v : adjList.get(v2Index)){
+            if(v.equals(v1)) return true;
+        }
         return false;
     }
 
@@ -42,7 +70,11 @@ public class AdjacencyListGraph implements Graph {
      * iff v has no downstream neighbors.
      */
     public List<Vertex> getDownstreamNeighbors(Vertex v){
-        return new ArrayList<Vertex>();
+        List<Vertex> neighbours = new ArrayList<>(0);
+        //search every list for v, get list of the vertices whose corresponding lists contained v
+
+        neighbours.removeAll(Collections.singleton(null));
+        return neighbours;
     }
 
     /**
@@ -56,7 +88,11 @@ public class AdjacencyListGraph implements Graph {
      * iff v has no upstream neighbors.
      */
     public List<Vertex> getUpstreamNeighbors(Vertex v){
-        return new ArrayList<Vertex>();
+        List<Vertex> neighbours = new ArrayList<>(0);
+        //this should just be the list corresponding to v
+
+        neighbours.removeAll(Collections.singleton(null));
+        return neighbours;
     }
 
     /**
@@ -66,6 +102,9 @@ public class AdjacencyListGraph implements Graph {
      * method should return a list of size 0 iff the graph has no vertices.
      */
     public List<Vertex> getVertices(){
-        return new ArrayList<Vertex>();
+        List<Vertex> copy = new ArrayList<>();
+        copy = vertexList;
+        return copy;
     }
+
 }
